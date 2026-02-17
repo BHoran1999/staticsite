@@ -1,11 +1,15 @@
 from textnode import TextNode, TextType
+from htmlnode import LeafNode
 from text_node_to_html_node import text_node_to_html_node
+import unittest
 
-def main():
-    text_node = TextNode("This is some bold text", TextType.BOLD)
-    html_node = text_node_to_html_node(text_node)
 
-    print(self.assertEqual(html_node.tag, None))
-    self.assertEqual(html_node.value, "This is some bold text")
+class TestTextNodeToHTMLNode(unittest.TestCase):
+    def test_text(self):
+        node = TextNode("Plain text", TextType.TEXT)
+        html_node = text_node_to_html_node(node)
+        self.assertEqual(html_node.tag, None)
+        self.assertEqual(html_node.value, "Plain text")
 
-main()
+if __name__ == "__main__":
+    unittest.main()

@@ -1,0 +1,34 @@
+import unittest
+
+from markdown_to_blocks import markdown_to_blocks
+
+class test_markdown_to_blocks(unittest.TestCase):
+    def test_markdown_to_blocks(self):
+        md = """
+This is **bolded** paragraph
+
+This is another paragraph with _italic_ text and `code` here
+This is the same paragraph on a new line
+
+- This is a list
+- with items
+"""
+        blocks = markdown_to_blocks(md)
+        self.assertEqual(
+            blocks,
+            [
+                "This is **bolded** paragraph",
+                "This is another paragraph with _italic_ text and `code` here\nThis is the same paragraph on a new line",
+                "- This is a list\n- with items",
+            ],
+        )
+
+    def test_extra_blank_lines(self):
+        markdown = "# Heading\n\n\n\nParagraph"
+        result = markdown_to_blocks(markdown)
+        expected = ["# Heading", "Paragraph"]
+        self.assertEqual(result, expected)
+
+if __name__ == "__main__":
+
+    unittest.main()

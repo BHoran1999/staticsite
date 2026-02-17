@@ -1,6 +1,6 @@
-import unittest
-
 from htmlnode import HTMLNode, LeafNode, ParentNode
+from textnode import TextNode, TextType
+import unittest
 
 
 class TestHTMLNode(unittest.TestCase):

@@ -5,8 +5,6 @@ class HTMLNode:
         self.children = children if children is not None else []
         self.props = props if props is not None else {}
 
-
-
     def to_html(self):
         raise NotImplementedError()
 
