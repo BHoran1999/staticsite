@@ -1,6 +1,6 @@
 from textnode import TextNode, TextType
 from split_nodes_delimiter import split_nodes_delimiter
-from split_nodes_images_and_links import split_nodes_image, split_nodes_links
+from split_nodes_images_and_links import split_nodes_image, split_nodes_link
 
 def text_to_textnodes(text):
     if text is None:
@@ -14,6 +14,6 @@ def text_to_textnodes(text):
     nodes = split_nodes_delimiter(nodes, "`", TextType.CODE)
 
     nodes = split_nodes_image(nodes)
-    nodes = split_nodes_links(nodes)
+    nodes = split_nodes_link(nodes)
 
     return nodes

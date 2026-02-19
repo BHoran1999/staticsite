@@ -35,7 +35,7 @@ def split_nodes_image(old_nodes):
     return new_nodes
 
 
-def split_nodes_links(old_nodes):
+def split_nodes_link(old_nodes):
     new_nodes = []
 
     if old_nodes is None:

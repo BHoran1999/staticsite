@@ -31,23 +31,27 @@ def markdown_to_html_node(markdown):
             node = ParentNode(f"h{level}", text_to_children(text))
 
         elif block_type == BlockType.CODE:
-            code = block[3:-3]
-            node = ParentNode("code", [LeafNode("code", text_to_children(code))])
+            code = block[4:-3]
+            code_node = ParentNode("code", text_to_children(code))
+            node = ParentNode("pre", [code_node])
 
         elif block_type == BlockType.QUOTE:
             lines = block.split("\n")
             items = []
             for line in lines:
-                quote = line[2:]
-                items.append(text_to_children(quote))
-            node = ParentNode("blockquote", items)
+                if line.startswith("> "):
+                    items.append(line[2:])
+                elif line.startswith(">"):
+                    items.append(line[1:])
+            quote = "\n".join(items)
+            node = ParentNode("blockquote", text_to_children(quote))
 
         elif block_type == BlockType.UNORDERED_LIST:
             lines = block.split("\n")
             items = []
             for line in lines:
                 item = line[2:]
-                items.append(text_to_children(item))
+                items.append(ParentNode("li", text_to_children(item)))
             node = ParentNode("ul", items)
 
         elif block_type == BlockType.ORDERED_LIST:
@@ -55,7 +59,7 @@ def markdown_to_html_node(markdown):
             items = []
             for i, line in enumerate(lines):
                 item = line[len(f"{i + 1}. "):]
-                items.append(text_to_children(item))
+                items.append(ParentNode("li", text_to_children(item)))
             node = ParentNode("ol", items)
 
         else:

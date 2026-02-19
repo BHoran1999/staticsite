@@ -9,6 +9,7 @@ class TestTextToTextNodes(unittest.TestCase):
         result = text_to_textnodes(text)
         expected = [TextNode(text, TextType.TEXT)]
         self.assertEqual(result, expected)
+        print(f"DEBUG: Result for simple text: {result}")
 
     def test_bold_text(self):
         text = "This is **bold** text."
@@ -39,3 +40,7 @@ class TestTextToTextNodes(unittest.TestCase):
             TextNode(" text.", TextType.TEXT)
         ]
         self.assertEqual(result, expected)
+        print(f"DEBUG: Result for code text: {result}")
+
+if __name__ == "__main__":
+    unittest.main()

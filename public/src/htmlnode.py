@@ -9,7 +9,9 @@ class HTMLNode:
         raise NotImplementedError()
 
     def props_to_html(self):
-        return "".join(f'{key}="{value}"' for key, value in self.props.items())
+        if not self.props:
+            return "" 
+        return "".join(f' {key}="{value}"' for key, value in self.props.items())
 
     def __eq__(self, other):
         if not isinstance(other, HTMLNode):
