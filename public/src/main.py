@@ -9,12 +9,14 @@ def main():
         basepath = sys.argv[1]
     
     else:
-        basepath = "/"
+        basepath = ""
+
+    print("Using basepath:", basepath)
 
     copy_directory("static", "docs")
 
-    generate_pages("content/index.md", "template.html", "docs/index.html", basepath)
-
     generate_pages_recursive ("content", "template.html", "docs", basepath)
+
+    print("Site generated successfully")
 
 main()

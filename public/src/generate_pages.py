@@ -1,3 +1,4 @@
+import html
 import os
 from extract_title import extract_title
 import re
@@ -19,8 +20,8 @@ def generate_pages(from_path, template_path, to_path, basepath):
 
     html = template.replace("{{ Title }}", title)
     html = html.replace("{{ Content }}", html_content)
-    html = html.replace('{{href="/}}', f'{{href="{basepath}"}}' )
-    html = html.replace('{{src="/}}', f'{{src="{basepath}"}}' )
+    html = html.replace('href="/', f'href="{basepath}/')  
+    html = html.replace('src="/', f'src="{basepath}/')
 
 
     os.makedirs(os.path.dirname(to_path), exist_ok=True)
